@@ -14,7 +14,7 @@ int main()
 {
     int tablica[]={100,110,120,130,140,150,160,170,180,190,200};
     int ile = sizeof tablica / sizeof *tablica;
-    przesuwanieirotacja(&tablica,ile);
+    przesuwanieirotacja(tablica,ile);
     return 0;
 }
 
@@ -53,7 +53,7 @@ void przesuwanieirotacja(int *tablica, int ile){
         system("pause");
         exit(0);
     }
-    wyswietltablice(&tablica[0],ile);
+    wyswietltablice(tablica,ile);
     printf(" - poczatkowa wartosc tablicy\n");
     int pamiec[oile],j=0;
     switch (wybor){
@@ -104,6 +104,6 @@ void przesuwanieirotacja(int *tablica, int ile){
         }
         break;
     }
-    wyswietltablice(&tablica[0],ile);
+    wyswietltablice(tablica,ile);
     printf(" - koncowa wartosc tablicy\n");
 }

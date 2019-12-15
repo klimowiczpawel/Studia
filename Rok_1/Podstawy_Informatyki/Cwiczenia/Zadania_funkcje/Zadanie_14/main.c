@@ -2,10 +2,9 @@
 #include <stdlib.h>
 #include <time.h>
 
-int czypierwsza();
-int liczbalosowa();
+int czypierwsza(int liczba);
 
-int main()
+int main(int argc, char *argv[])
 {
 /*
     Zadanie 14
@@ -15,26 +14,35 @@ int main()
     elementową liczb całkowitych wygenerowaną losowo oraz zapisuje liczby pierwsze z tej
     tablicy do wskazanego przy uruchomieniu pliku (argument programu).
 */
-    int tablicaliczblosowych[50],i;
-    FILE *plik;
-    srand(time(NULL));
-    for(i=0;i<50;i++){
-
-        tablicaliczblosowych[i]=rand();
-        printf("tab[%d] = %d\n",i,tablicaliczblosowych[i]);
-    }
-    if((plik=fopen("pierwsze.txt","w"))==NULL){
-        printf("Blad otwierania pliku w trybie zapisu!\n");
-        exit(1);
-    }
-    fprintf(plik,"Liczby pierwsze:\n");
-    for(i=0;i<50;i++){
-        if((czypierwsza(tablicaliczblosowych[i])==1)){
-            fprintf(plik,"%d, ",tablicaliczblosowych[i]);
+    if(argc==2){
+        int ile=50,tablicaliczblosowych[ile],i;
+        FILE *plik;
+        srand(time(NULL));
+        printf("tab[]={");
+        for(i=0;i<ile;i++){
+            tablicaliczblosowych[i]=rand();
+            if(i!=ile-1)
+                printf("%d,",tablicaliczblosowych[i]);
+            else
+                printf("%d}\n",tablicaliczblosowych[i]);
         }
+        if((plik=fopen(argv[1],"w"))==NULL){
+            printf("Blad otwierania pliku w trybie zapisu!\n");
+            exit(1);
+        }
+        fprintf(plik,"Liczby pierwsze:\n");
+        printf("Liczby pierwsze: ");
+        for(i=0;i<ile;i++){
+            if((czypierwsza(tablicaliczblosowych[i])==1)){
+                fprintf(plik,"%d, ",tablicaliczblosowych[i]);
+                printf("%d ",tablicaliczblosowych[i]);
+            }
+        }
+        fprintf(plik,"\n");
+        fclose(plik);
+    }else{
+        printf("Podano bledne argumenty przy otwieraniu pliku.");
     }
-    fprintf(plik,"\n");
-    fclose(plik);
     return 0;
 }
 

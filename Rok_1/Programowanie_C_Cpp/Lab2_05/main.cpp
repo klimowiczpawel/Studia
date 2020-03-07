@@ -37,7 +37,7 @@ int main()
 {
 	Ulamek a; // -> domyœlnie: 0 (0/1)
 	Ulamek b(1, 2);	// -> 1/2
-    a.wypisz();	// -> 0/1
+	a.wypisz();	// -> 0/1
 	a.zmien(3, 5);
 	a.wypisz();	// -> 3/5
 	b.wypisz();	// -> 1/2
